@@ -154,8 +154,11 @@ for n in np.logspace(0, 5, 50):
 ax.scatter(1/np.logspace(0, 5, 50), err_list, c='green', s=5, label='Euler')
 
 # find fit and report slope
-popt, pcov = curve_fit(power_fit, np.logspace(0, 5, 50), err_list, p0=[1,1])
-print(f'Fitted slope (Euler): {popt[-1]}')
+# use the points in the asymptotic regime 
+x_fit = 1/np.logspace(0, 5, 50)[10:40]
+err_for_fit = err_list[10:40]
+popt_e3, pcov = curve_fit(power_fit, x_fit, err_for_fit, p0=[1,1])
+print(f'Fitted slope (Euler): {popt_e3[-1]}')
 
 print('RK4')
 # print(f"{'steps/orbit':>12}  {'|r - r0| / a':>14}")
@@ -171,8 +174,9 @@ for n in np.logspace(0, 5, 50):
 ax.scatter(1/np.logspace(0, 5, 50), err_list, c='blue', s=5, label='RK4')
 
 # find fit and report slope
-popt_e3, pcov = curve_fit(power_fit, np.logspace(0, 5, 50), err_list, p0=[1,1])
-print(f'Fitted slope (Euler): {popt[-1]}')
+err_for_fit = err_list[10:40]
+popt_rk43, pcov = curve_fit(power_fit, x_fit, err_for_fit, p0=[1,1])
+print(f'Fitted slope (RK4): {popt_rk43[-1]}')
 
 # plot the nice things 
 ax.set_xscale('log')
@@ -182,6 +186,9 @@ ax.set_yscale('log')
 x = np.logspace(-5, 0, 50)
 ax.plot(x, 1000*x, c='k', label='$y=x$')
 ax.plot(x,1000*x**4, c='gray', label=r'$y=x^4$')
+
+ax.plot(x_fit, popt_e3[0]*x_fit**popt_e3[1], c='yellowgreen')
+ax.plot(x_fit, popt_rk43[0]*x_fit**popt_rk43[1], c='skyblue')
 
 ax.legend(frameon=False)
 ax.set_xlabel(r'$\Delta t/P$')
@@ -243,8 +250,10 @@ for n in np.logspace(0, 5, 50):
 ax.scatter(1/np.logspace(0, 5, 50), err_list, c='green', s=5, label='Euler')
 
 # find fit and report slope
-popt, pcov = curve_fit(power_fit, np.logspace(0, 5, 50), err_list, p0=[1,1])
-print(f'Fitted slope (Euler): {popt[-1]}')
+x_fit = 1/np.logspace(0, 5, 50)[30:50]
+err_for_fit = err_list[30:50]
+popt_e9, pcov = curve_fit(power_fit, x_fit, err_for_fit, p0=[1,1])
+print(f'Fitted slope (Euler): {popt_e9[-1]}')
 
 print('RK4')
 # print(f"{'steps/orbit':>12}  {'|r - r0| / a':>14}")
@@ -260,8 +269,9 @@ for n in np.logspace(0, 5, 50):
 ax.scatter(1/np.logspace(0, 5, 50), err_list, c='blue', s=5, label='RK4')
 
 # find fit and report slope
-popt_e9, pcov = curve_fit(power_fit, np.logspace(0, 5, 50), err_list, p0=[1,1])
-print(f'Fitted slope (Euler): {popt[-1]}')
+err_for_fit = err_list[30:50]
+popt_rk49, pcov = curve_fit(power_fit, x_fit, err_for_fit, p0=[1,1])
+print(f'Fitted slope (RK4): {popt_rk49[-1]}')
 
 # plot the nice things 
 ax.set_xscale('log')
@@ -272,13 +282,18 @@ x = np.logspace(-5, 0, 50)
 ax.plot(x, 1000*x, c='k', label='$y=x$')
 ax.plot(x,1000*x**4, c='gray', label=r'$y=x^4$')
 
+ax.plot(x_fit, popt_e9[0]*x_fit**popt_e9[1], c='yellowgreen')
+ax.plot(x_fit, popt_rk49[0]*x_fit**popt_rk49[1], c='skyblue')
+
 ax.legend(frameon=False)
 ax.set_xlabel(r'$\Delta t/P$')
 ax.set_ylabel('Error in position (a)')
 
 # compare the fits of the RK4 method at different eccentricities with the fit 
-
-ratio_fit = popt_e9[0]/popt_e3[0]
+print('fit for e=.3', f'{popt_rk43[0]:.2e}', popt_rk43[1])
+print('fit for e=.9', f'{popt_rk49[0]:.2e}', popt_rk49[1])
+ratio_fit = popt_rk49[0]/popt_rk43[0]
+print(ratio_fit)
 
 #%%
 # 4: The Hill radius and the Edge of a Satellite System
