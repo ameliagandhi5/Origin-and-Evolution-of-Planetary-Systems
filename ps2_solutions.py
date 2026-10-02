@@ -357,7 +357,6 @@ for nam in ['Jupiter', 'Saturn', 'Uranus', 'Neptune']:
     print(nam)
     print(f'Maximum a/R_H (prograde): {max_nam_p}, {max_ratio_p:.2f}')
     print(f'Maximum a/R_H (retrograde): {max_nam_r}, {max_ratio_r:.2f}')
-    print( )
     
     
 #%%
