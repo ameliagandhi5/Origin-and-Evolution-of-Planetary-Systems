@@ -327,7 +327,7 @@ sim = rebound.Simulation()
 sim.units = ("yr", "AU", "Msun")
 
 # define variables 
-a = 10
+a = 5.2
 e = 1e-3
 mu = 9.54e-4
 Omega = np.sqrt(sim.G/a**3)
@@ -403,7 +403,7 @@ sim = rebound.Simulation()
 sim.units = ("yr", "AU", "Msun")
 
 # define variables 
-a = 10
+a = 5.2
 e = 1e-3
 mu = 0.03
 Omega = np.sqrt(sim.G/a**3)
@@ -472,7 +472,7 @@ sim = rebound.Simulation()
 sim.units = ("yr", "AU", "Msun")
 
 # define variables 
-a = 10
+a = 5.2
 e = 1e-3
 mu = 0.05
 Omega = np.sqrt(sim.G/a**3)
@@ -551,7 +551,7 @@ sim = rebound.Simulation()
 sim.units = ("yr", "AU", "Msun")
 
 # define variables 
-a = 10
+a = 5.2
 e = 1e-3
 mu = 9.54e-4
 Omega = np.sqrt(sim.G/a**3)
@@ -616,7 +616,7 @@ sim = rebound.Simulation()
 sim.units = ("yr", "AU", "Msun")
 
 # define variables 
-a = 10
+a = 5.2
 e = 1e-3
 mu = 0.03
 Omega = np.sqrt(sim.G/a**3)
@@ -682,7 +682,7 @@ sim = rebound.Simulation()
 sim.units = ("yr", "AU", "Msun")
 
 # define variables 
-a = 10
+a = 5.2
 e = 1e-3
 mu = 0.05
 Omega = np.sqrt(sim.G/a**3)
@@ -746,4 +746,3 @@ ax_l.set(xlabel="time (yr)", ylabel=r"$\phi_{Particle} - \phi_{Jupiter}$ (deg)",
 ax_l.legend(frameon=False)
 ax_l2.set(xlabel="time (yr)", ylabel=r"$\phi_{Particle} - \phi_{Jupiter}$ (deg)", ylim=(-180, 180))
 ax_l2.legend(frameon=False)
-
